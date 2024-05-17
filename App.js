@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 //create ELement will create an element  using basic React Library createElement(tagName, attributes, content)
 const heading = React.createElement(
   "h1",
