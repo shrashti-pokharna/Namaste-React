@@ -15,6 +15,20 @@ const HeadingComponent = () => {
   );
 };
 
+//assignment3
+const HeaderComponent = () => {
+  return (
+    <header className="header">
+      <h3 id="logo">React Course</h3>
+      <div>
+        <input type="search"></input>
+        <span>🔍</span>
+      </div>
+      <span>👤</span>
+    </header>
+  );
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<HeadingComponent />);
+root.render(<HeaderComponent />);
