@@ -10,7 +10,6 @@ const FoodCategories = ({ cardData }) => {
 
       <div className="w-full overflow-x-auto flex no-scrollbar">
         {menuCards?.map((res) => {
-          // console.log(res);
           return (
             <div
               key={res.imageId}
