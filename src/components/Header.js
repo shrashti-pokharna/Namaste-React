@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+// import UserContext from "../context/UserContext";
 
 const Header = () => {
+  //This is how we can get context values using useContext
+  // const { loggedInUser } = useContext(UserContext);
+
   return (
     <>
       <header className="fixed top-0 bottom-0 left-0 right-0 z-[1000] h-20 shadow-[0_15px_40px_-20px_rgba(40,44,63,0.15)] w-full bg-white px-5">
