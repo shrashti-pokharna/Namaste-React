@@ -23,12 +23,13 @@ const RestaurantMenu = () => {
       (category) => {
         if (
           category?.card?.card?.["@type"] ===
-          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+            "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
+          category?.card?.card?.["@type"] ===
+            "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
         )
           return category;
       }
     );
-  console.log(menuData);
   return (
     <div className="max-w-[800px] min-h-[800px] mx-auto pt-[120px] pb-[100px]">
       <div className="flex ">
@@ -68,13 +69,15 @@ const RestaurantMenu = () => {
 
       <hr className="my-6 border-t-8" />
 
-      {categories?.map((category, index) => (
-        <RestaurantCategory
-          key={index}
-          data={category?.card?.card}
-          restaurant={menuData?.cards[2]?.card?.card?.info}
-        />
-      ))}
+      {categories?.map((category, index) => {
+        return (
+          <RestaurantCategory
+            key={index}
+            data={category?.card?.card}
+            restaurant={menuData?.cards[2]?.card?.card?.info}
+          />
+        );
+      })}
       {/* <ScrollToTop /> */}
     </div>
   );
