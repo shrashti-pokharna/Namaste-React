@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { BsCaretDownSquare } from "react-icons/bs";
 import { CDN_URL } from "../utils/constant";
-import useTruncatedElement from "../utils/useTruncatedElement";
+import useTruncatedElement from "../hooks/useTruncatedElement";
 const CategoryItem = ({ data, restaurant }) => {
   // console.log(data);
   const { name, price, defaultPrice, description, imageId, isVeg } = data;
