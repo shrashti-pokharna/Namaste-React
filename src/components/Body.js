@@ -17,7 +17,6 @@ const Body = () => {
     );
     const json = await data.json();
     setListAllCards(json.data.cards);
-    console.log(json.data.cards[1]);
   };
 
   if (listAllCards?.length === 0) {

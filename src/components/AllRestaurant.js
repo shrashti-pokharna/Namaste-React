@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { CDN_URL } from "../utils/constant";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOffers } from "./RestaurantCard";
 import { Link } from "react-router-dom";
 
 const AllRestaurant = ({ cardData }) => {
@@ -8,7 +8,9 @@ const AllRestaurant = ({ cardData }) => {
     cardData[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
   );
   const title = cardData[2]?.card?.card?.title;
-  console.log(menuCards);
+
+  //HOC
+  const RestaurantCardWithOffer = withOffers(RestaurantCard);
 
   const observerTarget = useRef(null);
 
@@ -53,10 +55,14 @@ const AllRestaurant = ({ cardData }) => {
       </div>
       <div className="grid grid-cols-4 gap-8">
         {menuCards?.map((res) => {
-          console.log(res);
+          const offer = res.info.aggregatedDiscountInfoV3;
           return (
             <Link to={"/restaurant/" + res.info.id} key={res.info.id}>
-              <RestaurantCard restaurant={res} />
+              {offer === undefined ? (
+                <RestaurantCard restaurant={res} />
+              ) : (
+                <RestaurantCardWithOffer restaurant={res} width="246px" />
+              )}
             </Link>
           );
         })}
