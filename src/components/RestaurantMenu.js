@@ -1,10 +1,13 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useSelector } from "react-redux";
+import { FiShoppingBag } from "react-icons/fi";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const menuData = useRestaurantMenu(resId);
+  const cartItems = useSelector((store) => store.cart.items);
 
   if (menuData === null) return null;
   const { text } = menuData?.cards[0]?.card?.card;
@@ -30,6 +33,7 @@ const RestaurantMenu = () => {
           return category;
       }
     );
+
   return (
     <div className="max-w-[800px] min-h-[800px] mx-auto pt-[120px] pb-[100px]">
       <div className="flex ">
@@ -79,6 +83,20 @@ const RestaurantMenu = () => {
         );
       })}
       {/* <ScrollToTop /> */}
+      {cartItems && cartItems.length > 0 && (
+        <div className="fixed flex h-12 bottom-0 text-white justify-between bg-[#60b246]  py-2 px-4 items-center min-w-[800px]">
+          <div className="text-sm font-medium">
+            {cartItems?.length} items added
+          </div>
+          <Link
+            to="/checkout"
+            className="flex items-center uppercase text-sm font-semibold"
+          >
+            <span className="mr-2">View Cart</span>
+            <FiShoppingBag size={15} />
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

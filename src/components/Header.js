@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { PiCaretDownBold } from "react-icons/pi";
 // import UserContext from "../context/UserContext";
 
 const Header = () => {
   //This is how we can get context values using useContext
   // const { loggedInUser } = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <>
@@ -47,7 +52,7 @@ const Header = () => {
               {"Bengaluru, Karnatka, India"}
             </span>
             <span className="text-[#fc8019] text-xl ml-2">
-              {/* <PiCaretDownBold size={18} /> */}
+              <PiCaretDownBold size={18} />
             </span>
           </div>
 
@@ -131,7 +136,7 @@ const Header = () => {
                     <path d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z"></path>
                   </svg>
                   <span className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm mr-3 self-center text-white">
-                    8
+                    {cartItems.length}
                   </span>
                 </span>
                 <span>Cart</span>

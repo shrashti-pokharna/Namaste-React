@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Offers from "./components/Offers";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import appStore from "./store/appStore";
+import Cart from "./components/Cart";
 // import UserContext from "./context/UserContext";
 
 //Context Provider
@@ -16,11 +19,12 @@ import RestaurantMenu from "./components/RestaurantMenu";
 
 const App = () => {
   return (
-    <div className="root">
-      <Header />
-
-      <Outlet />
-    </div>
+    <Provider store={appStore}>
+      <div className="root">
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 };
 
@@ -36,6 +40,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/offers",
         element: <Offers name="Swiggy Offers" />,
+      },
+      {
+        path: "/checkout",
+        element: <Cart />,
       },
       {
         path: "/restaurant/:resId",
