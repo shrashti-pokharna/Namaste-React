@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
   name: "cart",
@@ -28,7 +28,7 @@ const cartSlice = createSlice({
         if (state.items[index].itemCount > 1) {
           state.items[index].itemCount--;
         } else {
-          state.items.slice(index, 1);
+          state.items.splice(index, 1);
         }
       }
       localStorage.setItem("swgy_cartItems", JSON.stringify(state.items));
