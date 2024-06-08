@@ -29,6 +29,7 @@ const RestaurantCategory = ({ data, restaurant }) => {
           {categories?.map((category) => {
             return (
               <RestaurantCategory
+                key={category.title}
                 data={category}
                 restaurant={restaurant}
               ></RestaurantCategory>
