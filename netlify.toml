@@ -1,3 +1,12 @@
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [header.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
