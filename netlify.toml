@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/*"
-  to = "/"
+  to = "https://thingproxy.freeboard.io/fetch/"
 
 [[headers]]
   for = "/*"
