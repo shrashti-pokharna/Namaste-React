@@ -55,39 +55,47 @@ const Sidebar = ({ showSideBar, onClose }) => {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
 
-      console.log(lat, lng);
-
       try {
+        // const response = await fetch(
+        //   `${CORS_PROXY_URL}https://www.swiggy.com/dapi/misc/address-recommend?latlng=${lat}%2C${lng}`
+        // );
+        // const { data } = await response.json();
+        // if (data?.length > 0) {
+        //   const {
+        //     place_id,
+        //     formatted_address,
+        //     geometry: {
+        //       location: { lat, lng },
+        //     },
+        //   } = data[0];
+
+        //   const userLocation = {
+        //     placeId: place_id,
+        //     address: formatted_address,
+        //     lat,
+        //     lng,
+        //   };
         const response = await fetch(
-          `https://www.swiggy.com/dapi/misc/address-recommend?latlng=26.9124336%2C75.7872709`
+          `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
         );
-        const { data } = await response.json();
+        const {
+          place_id,
+          address: { city, state, country },
+        } = await response.json();
 
-        if (data?.length > 0) {
-          const {
-            place_id,
-            formatted_address,
-            geometry: {
-              location: { lat, lng },
-            },
-          } = data[0];
+        const userLocation = {
+          placeId: place_id,
+          address: `${city}, ${state}, ${country}`,
+          lat,
+          lng,
+        };
 
-          const userLocation = {
-            placeId: place_id,
-            address: formatted_address,
-            lat,
-            lng,
-          };
-          localStorage.setItem(
-            "swgy_userLocation",
-            JSON.stringify(userLocation)
-          );
-          localStorage.setItem("swgy_cartItems", JSON.stringify([]));
-          localStorage.setItem("swgy_selectedRestaurant", JSON.stringify(null));
-          localStorage.setItem("swgy_totalAmount", JSON.stringify(0));
+        localStorage.setItem("swgy_userLocation", JSON.stringify(userLocation));
+        localStorage.setItem("swgy_cartItems", JSON.stringify([]));
+        localStorage.setItem("swgy_selectedRestaurant", JSON.stringify(null));
+        localStorage.setItem("swgy_totalAmount", JSON.stringify(0));
 
-          window.location.reload();
-        }
+        window.location.reload();
       } catch (error) {
         alert("Error fetching address:", error);
       }
