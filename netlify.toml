@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/api/*"
+  from = "/*"
   to = "https://thingproxy.freeboard.io/fetch/"
 
 [[headers]]
