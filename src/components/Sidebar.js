@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { RxCross2 } from "react-icons/rx";
 import { MdOutlineMyLocation } from "react-icons/md";
+import { CORS_PROXY_URL } from "../utils/constant";
 
 const Sidebar = ({ showSideBar, onClose }) => {
   const [locations, setLocations] = useState([]);
@@ -13,7 +14,7 @@ const Sidebar = ({ showSideBar, onClose }) => {
     searchQuery ? setShowCancel(true) : setShowCancel(false);
     setLocations([]);
     const res = await fetch(
-      `https://www.swiggy.com/dapi/misc/place-autocomplete?input=${searchQuery}&types=`
+      `${CORS_PROXY_URL}https://www.swiggy.com/dapi/misc/place-autocomplete?input=${searchQuery}&types=`
     );
     const { data } = await res.json();
     setLocations(data);
@@ -21,7 +22,7 @@ const Sidebar = ({ showSideBar, onClose }) => {
 
   const handleFetchLatLong = async (placeId) => {
     const res = await fetch(
-      `https://www.swiggy.com/dapi/misc/address-recommend?place_id=${placeId}`
+      `${CORS_PROXY_URL}https://www.swiggy.com/dapi/misc/address-recommend?place_id=${placeId}`
     );
     const { data } = await res.json();
 

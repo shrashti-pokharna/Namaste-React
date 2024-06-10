@@ -54,14 +54,14 @@ const Cart = () => {
 
   return (
     <div className="bg-[#e9ecee] pt-[100px] flex justify-center min-h-screen">
-      <div className="w-7/12">
+      {/* <div className="w-7/12">
         <div className=" bg-white mt-8 m-10 py-5 px-10 min-h-[220px] self-start">
           Cart
         </div>
         <div className=" bg-white  m-10 py-5 px-10 min-h-[200px] self-start">
           Cart
         </div>
-      </div>
+      </div> */}
       <div className="w-3/12 bg-white self-start min-h-max mt-8 ml-0 mr-10 pt-2  ">
         <div className="mt-6 px-8  ">
           <Link

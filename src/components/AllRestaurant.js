@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { CDN_URL } from "../utils/constant";
 import RestaurantCard, { withOffers } from "./RestaurantCard";
 import { Link } from "react-router-dom";
+import { CORS_PROXY_URL } from "../utils/constant";
 
 const AllRestaurant = ({ cardData }) => {
   const [menuCards, setMenuCards] = useState(
@@ -39,7 +40,7 @@ const AllRestaurant = ({ cardData }) => {
 
   const fetchData = async () => {
     const data = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+      `${CORS_PROXY_URL}https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
     );
     const json = await data.json();
     json.data.cards;

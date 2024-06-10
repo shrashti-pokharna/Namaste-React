@@ -38,7 +38,7 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
-        path: "/offers",
+        path: "/offers-near-me",
         element: <Offers name="Swiggy Offers" />,
       },
       {
