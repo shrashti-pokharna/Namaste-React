@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -19,6 +19,21 @@ import Search from "./components/Search";
 }
 
 const App = () => {
+  const [success, setSuccess] = useState(
+    localStorage.getItem("swgy_userLocation")
+  );
+  if (!localStorage.getItem("swgy_userLocation")) {
+    const userLocation = {
+      placeId: "ChIJbU60yXAWrjsR4E9-UejD3_g",
+      address: "Bengaluru, Karnataka, India",
+      lat: 12.9715987,
+      lng: 77.5945627,
+    };
+    localStorage.setItem("swgy_userLocation", JSON.stringify(userLocation));
+    setSuccess(localStorage.getItem("swgy_userLocation"));
+  }
+
+  if (!success) return null;
   return (
     <Provider store={appStore}>
       <div className="root">
