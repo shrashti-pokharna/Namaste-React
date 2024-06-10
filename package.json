@@ -1,7 +1,7 @@
 {
-  "name": "namaste-react",
+  "name": "Swiggy_clone",
   "version": "1.0.0",
-  "description": "This is React Basics",
+  "description": "This is the best swiggy clone ever made",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
