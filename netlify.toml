@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/*"
-  to = "https://thingproxy.freeboard.io/fetch/:splat"
+  to = "/"
   status = 200
   force = true
 
