@@ -13,6 +13,7 @@ exports.handler = async function (event, context) {
 
   try {
     const response = await axios.get(apiUrl);
+    console.log("response in fetchswiggy", response);
     return {
       statusCode: 200,
       body: JSON.stringify(response.data),
