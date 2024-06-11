@@ -1,4 +1,5 @@
-const axios = require("axios");
+// const axios = require("axios");
+const fetch = require("node-fetch");
 
 exports.handler = async function (event, context) {
   console.log("in functions");
@@ -18,29 +19,20 @@ exports.handler = async function (event, context) {
     console.log("in try");
     const response1 = await fetch(apiUrl);
     const data = await response1.json();
-    console.log("json response", data);
-    console.log(response1.data);
-    console.log(response1.body);
+    console.log("json response", JSON.stringify({ data }));
+
     // const response = await axios.get(apiUrl);
     // console.log("response in fetchswiggy", response);
-    return new Response(response1.body, {
-      status: response1.status,
-      statusText: response1.statusText,
+
+    return {
+      statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin": "*", // Allow requests from any origin
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization", // Allow the Content-Type header
       },
-    });
-    // return {
-    //   statusCode: 200,
-    //   headers: {
-    //     "Access-Control-Allow-Origin": "*", // Allow requests from any origin
-    //     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    //     "Access-Control-Allow-Headers": "Content-Type, Authorization", // Allow the Content-Type header
-    //   },
-    //   body: JSON.stringify(response1.data),
-    // };
+      body: JSON.stringify({ data }),
+    };
   } catch (error) {
     console.log(error);
     return {
