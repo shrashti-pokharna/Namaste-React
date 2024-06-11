@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/fetchSwiggy/:splat"
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
   status = 200
 
 [functions]

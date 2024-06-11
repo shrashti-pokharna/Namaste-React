@@ -15,9 +15,7 @@ const Body = () => {
   const { lat, lng } = JSON.parse(localStorage.getItem("swgy_userLocation"));
 
   const fetchData = async () => {
-    const data = await fetch(
-      `/.netlify/functions/fetchSwiggy?lat=${lat}&lng=${lng}`
-    );
+    const data = await fetch(`/api/fetchSwiggy?lat=${lat}&lng=${lng}`);
 
     console.log("data", data);
     console.log("json", data.json());

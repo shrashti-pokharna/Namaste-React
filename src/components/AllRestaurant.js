@@ -39,9 +39,7 @@ const AllRestaurant = ({ cardData }) => {
   const { lat, lng } = JSON.parse(localStorage.getItem("swgy_userLocation"));
 
   const fetchData = async () => {
-    const data = await fetch(
-      `/.netlify/functions/fetchSwiggy?lat=${lat}&lng=${lng}`
-    );
+    const data = await fetch(`/api/fetchSwiggy?lat=${lat}&lng=${lng}`);
     const json = await data.json();
     json.data.cards;
     setMenuCards((menuCards) => [
