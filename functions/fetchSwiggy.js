@@ -15,6 +15,9 @@ exports.handler = async function (event, context) {
   console.log("apiUrl", apiUrl);
 
   try {
+    console.log("in try");
+    const response1 = await fetch(apiUrl);
+    console.log(response1);
     const response = await axios.get(apiUrl);
     console.log("response in fetchswiggy", response);
     return {
@@ -22,7 +25,7 @@ exports.handler = async function (event, context) {
       headers: {
         "Access-Control-Allow-Origin": "*", // Allow requests from any origin
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type", // Allow the Content-Type header
+        "Access-Control-Allow-Headers": "Content-Type, Authorization", // Allow the Content-Type header
       },
       body: JSON.stringify(response.data),
     };
