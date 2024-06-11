@@ -21,19 +21,28 @@ exports.handler = async function (event, context) {
     console.log(response1.body);
     // const response = await axios.get(apiUrl);
     // console.log("response in fetchswiggy", response);
-    return {
-      statusCode: 200,
+    return new Response(response1.body, {
+      status: response1.status,
+      statusText: response1.statusText,
       headers: {
         "Access-Control-Allow-Origin": "*", // Allow requests from any origin
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization", // Allow the Content-Type header
       },
-      body: JSON.stringify(response1.data),
-    };
+    });
+    // return {
+    //   statusCode: 200,
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+    //     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+    //     "Access-Control-Allow-Headers": "Content-Type, Authorization", // Allow the Content-Type header
+    //   },
+    //   body: JSON.stringify(response1.data),
+    // };
   } catch (error) {
     console.log(error);
     return {
-      statusCode: error.response ? error.response.status : 500,
+      statusCode: error.response1 ? error.response1.status : 500,
       body: JSON.stringify({ error: error.message }),
     };
   }

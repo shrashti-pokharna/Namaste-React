@@ -18,6 +18,9 @@ const Body = () => {
     const data = await fetch(
       `/.netlify/functions/fetchSwiggy?lat=${lat}&lng=${lng}`
     );
+
+    console.log("data", data);
+    console.log("json", data.json());
     const json = await data.json();
     setListAllCards(json.data.cards);
   };
