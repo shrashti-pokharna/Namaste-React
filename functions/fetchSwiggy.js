@@ -19,6 +19,11 @@ exports.handler = async function (event, context) {
     console.log("response in fetchswiggy", response);
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type", // Allow the Content-Type header
+      },
       body: JSON.stringify(response.data),
     };
   } catch (error) {
