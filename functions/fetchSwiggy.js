@@ -17,7 +17,8 @@ exports.handler = async function (event, context) {
   try {
     console.log("in try");
     const response1 = await fetch(apiUrl);
-    console.log("json response", response1.json());
+    const data = await response1.json();
+    console.log("json response", data);
     console.log(response1.data);
     console.log(response1.body);
     // const response = await axios.get(apiUrl);
