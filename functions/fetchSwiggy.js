@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-exports.handler = async (event, context) => {
+exports.handler = async function (event, context) {
   console.log("in functions");
   //   const { lat, lng } = event.queryStringParameters;
   //   console.log("lat and lng", lat, lng);
