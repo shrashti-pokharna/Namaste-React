@@ -1,6 +1,7 @@
 const axios = require("axios");
 
 exports.handler = async function (event, context) {
+  console.log("in functions");
   const { lat, lng } = event.queryStringParameters;
   if (!lat || !lng) {
     return {
