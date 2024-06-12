@@ -18,6 +18,7 @@ exports.handler = async (event, context) => {
       },
     });
     const data1 = await response.json();
+    console.log(data1);
     return {
       statusCode: 200,
       body: JSON.stringify(data1),
