@@ -42,6 +42,7 @@ const AllRestaurant = ({ cardData }) => {
     const data = await fetch(`/api/fetchSwiggy?lat=${lat}&lng=${lng}`);
     const json = await data.json();
     json.data.cards;
+    console.log(menuCards);
     setMenuCards((menuCards) => [
       ...menuCards,
       ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
