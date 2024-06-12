@@ -66,36 +66,24 @@ const Sidebar = ({ showSideBar, onClose }) => {
               location: { lat, lng },
             },
           } = data[0];
+
+          const userLocation = {
+            placeId: place_id,
+            address: formatted_address,
+            lat,
+            lng,
+          };
+
+          localStorage.setItem(
+            "swgy_userLocation",
+            JSON.stringify(userLocation)
+          );
+          localStorage.setItem("swgy_cartItems", JSON.stringify([]));
+          localStorage.setItem("swgy_selectedRestaurant", JSON.stringify(null));
+          localStorage.setItem("swgy_totalAmount", JSON.stringify(0));
+
+          window.location.reload();
         }
-        console.log(place_id, formatted_address, geometry);
-
-        const userLocation = {
-          placeId: place_id,
-          address: formatted_address,
-          lat,
-          lng,
-        };
-        // const response = await fetch(
-        //   `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
-        // );
-        // const {
-        //   place_id,
-        //   address: { city, state, country },
-        // } = await response.json();
-
-        // const userLocation = {
-        //   placeId: place_id,
-        //   address: `${city}, ${state}, ${country}`,
-        //   lat,
-        //   lng,
-        // };
-
-        localStorage.setItem("swgy_userLocation", JSON.stringify(userLocation));
-        localStorage.setItem("swgy_cartItems", JSON.stringify([]));
-        localStorage.setItem("swgy_selectedRestaurant", JSON.stringify(null));
-        localStorage.setItem("swgy_totalAmount", JSON.stringify(0));
-
-        window.location.reload();
       } catch (error) {
         alert("Error fetching address:", error);
       }
