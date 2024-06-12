@@ -67,6 +67,7 @@ const Sidebar = ({ showSideBar, onClose }) => {
             },
           } = data[0];
         }
+        console.log(place_id, formatted_address, geometry);
 
         const userLocation = {
           placeId: place_id,
