@@ -40,8 +40,8 @@ Swiggy 2.0 is a personal project that replicates the popular food delivery appli
 
 To set up and run the project locally:
 
-1. Clone the repository: `git clone https://github.com/chahatbhatia1/swiggy-clone.git`
-2. Navigate to the project directory: `cd swiggy-clone`
+1. Clone the repository: `git clone https://github.com/shrashti-pokharna/Swiggy_2.0.git`
+2. Navigate to the project directory: `cd Swiggy_2.0`
 3. Install dependencies: `npm install`
 4. Start the development server: `npm start` or `npm run start`
 
