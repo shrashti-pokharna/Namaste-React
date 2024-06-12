@@ -17,9 +17,7 @@ const Body = () => {
   const fetchData = async () => {
     const data = await fetch(`/api/fetchSwiggy?lat=${lat}&lng=${lng}`);
 
-    console.log("data", data);
     const json = await data.json();
-    console.log(json);
     setListAllCards(json.data.cards);
   };
 

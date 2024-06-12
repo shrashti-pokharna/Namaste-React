@@ -14,16 +14,14 @@ const Sidebar = ({ showSideBar, onClose }) => {
     searchQuery ? setShowCancel(true) : setShowCancel(false);
     setLocations([]);
     const res = await fetch(
-      `${CORS_PROXY_URL}https://www.swiggy.com/dapi/misc/place-autocomplete?input=${searchQuery}&types=`
+      `/api/fetchSearchLocation?searchQuery=${searchQuery}`
     );
     const { data } = await res.json();
     setLocations(data);
   };
 
   const handleFetchLatLong = async (placeId) => {
-    const res = await fetch(
-      `${CORS_PROXY_URL}https://www.swiggy.com/dapi/misc/address-recommend?place_id=${placeId}`
-    );
+    const res = await fetch(`/api/fetchLatLong?placeId=${placeId}`);
     const { data } = await res.json();
 
     if (data?.length > 0) {
@@ -56,39 +54,40 @@ const Sidebar = ({ showSideBar, onClose }) => {
       const lng = position.coords.longitude;
 
       try {
-        // const response = await fetch(
-        //   `${CORS_PROXY_URL}https://www.swiggy.com/dapi/misc/address-recommend?latlng=${lat}%2C${lng}`
-        // );
-        // const { data } = await response.json();
-        // if (data?.length > 0) {
-        //   const {
-        //     place_id,
-        //     formatted_address,
-        //     geometry: {
-        //       location: { lat, lng },
-        //     },
-        //   } = data[0];
-
-        //   const userLocation = {
-        //     placeId: place_id,
-        //     address: formatted_address,
-        //     lat,
-        //     lng,
-        //   };
         const response = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
+          `/api/fetchLocationByGPS?lat=${lat}&lng=${lng}`
         );
-        const {
-          place_id,
-          address: { city, state, country },
-        } = await response.json();
+        const { data } = await response.json();
+        if (data?.length > 0) {
+          const {
+            place_id,
+            formatted_address,
+            geometry: {
+              location: { lat, lng },
+            },
+          } = data[0];
+        }
 
         const userLocation = {
           placeId: place_id,
-          address: `${city}, ${state}, ${country}`,
+          address: formatted_address,
           lat,
           lng,
         };
+        // const response = await fetch(
+        //   `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`
+        // );
+        // const {
+        //   place_id,
+        //   address: { city, state, country },
+        // } = await response.json();
+
+        // const userLocation = {
+        //   placeId: place_id,
+        //   address: `${city}, ${state}, ${country}`,
+        //   lat,
+        //   lng,
+        // };
 
         localStorage.setItem("swgy_userLocation", JSON.stringify(userLocation));
         localStorage.setItem("swgy_cartItems", JSON.stringify([]));

@@ -9,11 +9,11 @@ const Search = () => {
 
   const searchRestaurants = async (searchQuery) => {
     if (!searchQuery) return;
-
+    const { lat, lng } = JSON.parse(localStorage.getItem("swgy_userLocation"));
     setLoading(true);
     setSuggestions([]);
     const res = await fetch(
-      `${CORS_PROXY_URL}https://www.swiggy.com/dapi/restaurants/search/suggest?lat=26.4498954&lng=74.6399163&str=${searchQuery}&trackingId=null`
+      `/api/search?lat=${lat}&lng=${lng}&searchQuery=${searchQuery}`
     );
     const { data } = await res.json();
 
