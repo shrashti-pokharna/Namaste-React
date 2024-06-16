@@ -3,7 +3,7 @@ import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useSelector } from "react-redux";
 import { FiShoppingBag } from "react-icons/fi";
-import SearchShimmer from "./SearchShimmer";
+import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
