@@ -3,6 +3,7 @@ import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { useSelector } from "react-redux";
 import { FiShoppingBag } from "react-icons/fi";
+import SearchShimmer from "./SearchShimmer";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -33,6 +34,8 @@ const RestaurantMenu = () => {
           return category;
       }
     );
+
+  if (!categories) return <SearchShimmer />;
 
   return (
     <div className="max-w-[800px] min-h-[800px] mx-auto pt-[120px] pb-[100px]">
