@@ -10,7 +10,7 @@ const RestaurantMenu = () => {
   const menuData = useRestaurantMenu(resId);
   const cartItems = useSelector((store) => store.cart.items);
 
-  if (menuData === null) return null;
+  if (menuData === null) return <SearchShimmer />;
   const { text } = menuData?.cards[0]?.card?.card;
   const {
     cuisines,
@@ -34,8 +34,6 @@ const RestaurantMenu = () => {
           return category;
       }
     );
-
-  if (!categories) return <SearchShimmer />;
 
   return (
     <div className="max-w-[800px] min-h-[800px] mx-auto pt-[120px] pb-[100px]">
