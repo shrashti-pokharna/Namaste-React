@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import appStore from "./store/appStore";
 import Cart from "./components/Cart";
 import Search from "./components/Search";
+import Support from "./components/Support";
 // import UserContext from "./context/UserContext";
 
 //Context Provider
@@ -68,6 +69,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/support",
+        element: <Support />,
       },
     ],
     errorElement: <Error />,
